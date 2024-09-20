@@ -6,16 +6,18 @@ import (
 
 	"github.com/gorilla/mux"
 	log "github.com/rs/zerolog/log"
+	"github.com/spf13/viper"
 )
 
 func RunServer() {
-	log.Info().Msg("Running PIG Dummy Service on port 8000")
+	log.Info().Msgf("Running PIG Dummy Service on port %s", viper.GetString("Port"))
 	r := mux.NewRouter()
 	r.HandleFunc("/internal/healthz", healthcheck)
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("resources/"))))
 	r.Use(loggingMiddleware)
 	http.Handle("/", r)
-	if err := http.ListenAndServe(viper.GetInt("Port"), nil); err != nil {
+	port := ":" + viper.GetString("Port")
+	if err := http.ListenAndServe(port, nil); err != nil {
 		log.Fatal().Err(err).Msg("Startup failed")
 	}
 }
