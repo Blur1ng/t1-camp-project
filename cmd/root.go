@@ -26,7 +26,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var cfgFile string
+var cfgFile, string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -58,6 +58,7 @@ func init() {
 	// will be global for your application.
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.pig.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.pig.yaml)")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -79,6 +80,8 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
+
+	viper.SetDefault("Port", 8000)
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {

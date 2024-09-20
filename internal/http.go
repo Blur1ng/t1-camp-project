@@ -15,7 +15,7 @@ func RunServer() {
 	r.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir("resources/"))))
 	r.Use(loggingMiddleware)
 	http.Handle("/", r)
-	if err := http.ListenAndServe(":8000", nil); err != nil {
+	if err := http.ListenAndServe(viper.GetInt("Port"), nil); err != nil {
 		log.Fatal().Err(err).Msg("Startup failed")
 	}
 }
