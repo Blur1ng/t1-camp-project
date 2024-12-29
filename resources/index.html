@@ -33,6 +33,16 @@
             
             $("#healthcheck").html(text);
         });
+
+        $.getJSON('/database', function(data) {
+          
+          var text = `<button style="background-color:blue; border-color:blue; color:white">Database response: ${data.message}</button><br>`
+                      
+          
+          $("#dbcheck").html(text);
+      });
+
+
         </script>
     
     <script>
@@ -52,6 +62,18 @@
             });
         }
         </script>
+
+<script>
+  function checkdb() {
+      $.getJSON('/database', function(data) {
+          
+          var text = `<button style="background-color:blue; border-color:blue; color:white">Database response: ${data.message}</button><br>`
+                      
+          
+          $("#dbcheck").html(text);
+      });
+  }
+  </script>
 
   </head>
 
@@ -96,7 +118,8 @@
           <!-- Sub Navigation -->
           <ul class="nav nav-pills nav-stacked">
             <li class="active"><a href="/">Home</a>
-            <li><a onclick="checkhealth()" href="#">Healthcheck</a></li>
+            <li><a onclick="checkhealth()" href="#">Healthcheck</a></li> <br>
+            <li><a onclick="checkdb()" href="#">DB check</a></li>
           </ul>
 
         </div>
@@ -107,6 +130,7 @@
 
             <!-- Design Body -->
             <p id="healthcheck"></p>
+            <p id="dbcheck"></p>
             <h2>Lorem ipsum</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a est vel est iaculis tincidunt eget sit amet felis. Donec tellus arcu, vulputate nec volutpat sagittis, placerat hendrerit odio. Mauris fringilla eros semper eros iaculis faucibus. Ut rutrum nisl non massa lacinia commodo ultricies sit amet mauris. Nullam erat nibh, lacinia venenatis diam non, imperdiet pellentesque felis. Fusce tempus ligula eget sem commodo viverra vel non est. Maecenas hendrerit imperdiet diam vitae pharetra.</p>
             <h4>Vivamus id cursus</h4>
