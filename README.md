@@ -25,6 +25,15 @@ or run compiled binary
 `./pig`
 
 
+### Environment variables
+
+| Variable | Description |
+|----------|----------|
+| PORT     | A port that the application is run on. Default is 8000   | 
+| DATABASE | A dbstring for POstgreSQL DB. If not specified, runs without DB | 
+
+
+
 ### Notes
 
 Be also aware of ./resources directory which contains index HTML page. This should be copied alongside with ./pig binary as well with the same structure
