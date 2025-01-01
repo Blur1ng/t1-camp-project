@@ -30,7 +30,7 @@ or run compiled binary
 | Variable | Description |
 |----------|----------|
 | PORT     | A port that the application is run on. Default is 8000   | 
-| DATABASE | A dbstring for POstgreSQL DB. If not specified, runs without DB | 
+| DATABASE | A dbstring for PostgreSQL DB. If not specified, service runs without DB | 
 
 
 
