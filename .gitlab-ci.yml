@@ -1,4 +1,15 @@
 image: golang:1.23.7-bookworm
-build:
+
+stages:
+  - build
+  - test
+
+build_binary:
+  stage: build
   script:
     - go build
+
+unit_test:
+  stage: test
+  script:
+    - go test ./...
