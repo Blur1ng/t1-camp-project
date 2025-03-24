@@ -1,0 +1,3 @@
+image: go:1.23.7-bookworm
+build:
+  - go build
