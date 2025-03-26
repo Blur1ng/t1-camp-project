@@ -4,6 +4,14 @@ stages:
   - build
   - test
 
+build_docker:
+  stage: build
+  image: docker
+  service:
+    docker:dind
+  script:
+    - docker build -t pig:0.0.2
+
 build_binary:
   stage: build
   script:
