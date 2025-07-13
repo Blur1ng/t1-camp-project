@@ -1,20 +1,11 @@
-FROM golang:1.23.7-bookworm AS stage
-
-RUN mkdir /app
+FROM golang:1.23.7-alpine AS stage
 WORKDIR /app
-
-COPY ./go.mod /app
-COPY ./go.sum /app
-
+COPY go.sum go.mod ./
 RUN go mod download
+COPY . .
+RUN go build -o goapp .
 
-COPY ./ /app
-
-RUN go build
-
-FROM debian:12.10
-
-COPY --from=stage /app/pig /pig
-
-EXPOSE 8000
-CMD /pig
+FROM alpine:3.20
+WORKDIR /app
+COPY --from=stage /app/goapp .
+ENTRYPOINT ["./goapp"]
