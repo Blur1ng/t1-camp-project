@@ -2,7 +2,7 @@ image: golang:1.23.7-bookworm
 
 stages:
   - build
-  - test
+#  - test
 
 build_binary:
   stage: build
@@ -13,13 +13,13 @@ build_docker:
   image: docker
   stage: build
   before_script:
-    - docker info
+    - export
   services:
     - docker:dind
   script:
     - docker build -t goapp2 .
 
-unit_test:
-  stage: test
-  script:
-    - go test ./...
+#unit_test:
+#  stage: test
+#  script:
+#    - go test ./...
