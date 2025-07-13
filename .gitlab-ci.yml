@@ -10,18 +10,19 @@ build_binary:
     - go build
 
 build_docker:
-  image: docker
+  image: docker:26.1.3
   stage: build
-  before_script:
-    - export
-    - echo "$PASSWORD" | docker login -u ${GITLAB_USER_LOGIN} --password-stdin
   services:
-    - docker:dind
+    - name: docker:26.1.3-dind
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+  before_script:
+    - env
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
   script:
     - docker build . -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
-    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
-
-    
+    - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
 
 unit_test:
   stage: test
