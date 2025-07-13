@@ -9,13 +9,6 @@ build_binary:
   script:
     - go build
 
-build_docker:
-  image: docker
-  stage: build
-  services:
-    - docker:dind
-  before scripts:
-    - docker info
 
 unit_test:
   stage: test
