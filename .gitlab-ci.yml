@@ -2,7 +2,7 @@ image: golang:1.23.7-bookworm
 
 stages:
   - build
-#  - test
+  - test
 
 build_binary:
   stage: build
@@ -14,12 +14,14 @@ build_docker:
   stage: build
   before_script:
     - export
+    - docker login ${CI_REGISTRY} -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD}
   services:
     - docker:dind
   script:
-    - docker build -t goapp2 .
+    - docker build . -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
+    - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA}
 
-#unit_test:
-#  stage: test
-#  script:
-#    - go test ./...
+unit_test:
+  stage: test
+  script:
+    - go test ./...
