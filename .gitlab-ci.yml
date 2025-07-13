@@ -13,7 +13,7 @@ build_docker:
   image: docker
   stage: build
   services:
-    - docker:dind
+    - docker: dind
   variables:
     DOCKER_HOST: tcp://docker:2375/
   before scripts:
