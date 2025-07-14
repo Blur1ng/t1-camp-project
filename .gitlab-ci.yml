@@ -17,7 +17,7 @@ build_docker:
   services:
     - name: docker:dind
   script:
-    - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .w
+    - docker build -t ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHORT_SHA} .
 
 unit_test:
   stage: test
