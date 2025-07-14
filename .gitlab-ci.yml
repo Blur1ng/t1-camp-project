@@ -3,6 +3,7 @@ image: golang:1.23.7-bookworm
 stages:
   - build
   - test
+  - deploy
 
 build_binary:
   stage: build
@@ -24,5 +25,20 @@ unit_test:
   script:
     - go test ./...
 
+deploy:
+  image: debian:stable
+  stage: deploy
+  before_script:
+    - apt update
+    - apt install -y python3 python3-pip
+    - pip install --break-system-packages ansible
+    - cd ~
+    - cat $id_rsa > .ssh/id_rsa
+    - chmod 700 .ssh
+    - chmod 600 .ssh/id_rsa
+    - cd -
+  script:
+    - ansible-playbook -i inventory.ini deploy.yaml --ask-pass
+    
 
   

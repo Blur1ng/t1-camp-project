@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: student103
+  become: yes
+  tasks:
+  - name: Copy file with owner and permissions
+    ansible.builtin.apt:
+      src: pig
+      dest: /home/student103
+      owner: student103
+      group: it-camp-gitlab-users
+      mode: "0700"
