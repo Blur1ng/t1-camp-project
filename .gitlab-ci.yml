@@ -34,8 +34,8 @@ deploy:
     - pip install --break-system-packages ansible
     - cd ~
     - cd .ssh
-    - touch id_rsa
-    - echo $id_rsa > id_rsa
+    - mkdir .ssh
+    - echo $id_rsa > .ssh/id_rsa
     - chmod 700 .ssh
     - chmod 600 .ssh/id_rsa
     - cd -
