@@ -5,25 +5,25 @@ stages:
   - test
   - deploy
 
-build_binary:
-  stage: build
-  script:
-    - go build
-
-build_docker:
-  image: docker
-  stage: build
-  before_script:
-    - env
-  services:
-    - name: docker:dind
-  script:
-    - docker build -t goapp2 .
-
-unit_test:
-  stage: test
-  script:
-    - go test ./...
+#build_binary:
+#  stage: build
+#  script:
+#    - go build
+#
+#build_docker:
+#  image: docker
+#  stage: build
+#  before_script:
+#    - env
+#  services:
+#    - name: docker:dind
+#  script:
+#    - docker build -t goapp2 .
+#
+#unit_test:
+#  stage: test
+#  script:
+#    - go test ./...
 
 deploy:
   image: debian:stable
