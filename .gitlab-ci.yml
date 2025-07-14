@@ -29,13 +29,14 @@ deploy:
   image: debian:stable
   stage: deploy
   before_script:
+    - env
     - apt update
     - apt install -y python3 python3-pip
     - pip install --break-system-packages ansible
     - mkdir -p ~/.ssh
     - echo "$id_rsa" > ~/.ssh/id_rsa
-    - chmod 700 .ssh
-    - chmod 600 .ssh/id_rsa
+    - chmod 700 ~/.ssh
+    - chmod 600 ~/.ssh/id_rsa
   script:
     - ansible-playbook -i inventory.ini deploy.yaml --ask-pass
     
