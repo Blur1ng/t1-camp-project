@@ -9,6 +9,9 @@ build_binary:
   stage: build
   script:
     - go build
+  artifacts:
+    paths:
+      - pig
 
 build_docker:
   image: docker
@@ -40,5 +43,3 @@ deploy:
   script:
     - ansible-playbook -i inventory.ini deploy.yaml
     
-
-  
