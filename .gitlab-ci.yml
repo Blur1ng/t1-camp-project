@@ -16,8 +16,6 @@ build_binary:
 build_docker:
   image: docker
   stage: build
-  before_script:
-    - env
   services:
     - name: docker:dind
   script:
@@ -32,7 +30,6 @@ deploy:
   image: debian:stable
   stage: deploy
   before_script:
-    - env
     - apt update
     - apt install -y python3 python3-pip openssh-client
     - pip install --break-system-packages ansible
