@@ -37,7 +37,6 @@ deploy:
     - echo "$id_rsa" > ~/.ssh/id_rsa
     - chmod 700 ~/.ssh
     - chmod 600 ~/.ssh/id_rsa
-    - ssh-keyscan -H 10.10.146.33 >> ~/.ssh/known_hosts
   script:
     - ansible-playbook -i inventory.ini deploy.yaml
     
