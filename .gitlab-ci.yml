@@ -40,3 +40,4 @@ deploy:
   script:
     - ansible-playbook -i inventory.ini deploy.yaml
     
+    
