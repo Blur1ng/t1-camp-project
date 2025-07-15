@@ -6,6 +6,40 @@
     ansible.builtin.copy:
       src: pig
       dest: /home/student103/pig
-      owner: student103
-      group: it-camp-gitlab-users
       mode: "0700"
+
+  - name: Create systemd user service directory
+    ansible.builtin.file:
+      path: /home/student103/.config/systemd
+      state: directory
+      mode: '0755'
+
+  - name: Deploy pig_unit with systemd unit
+    ansible.builtin.copy:
+      dest: /home/student103/.config/systemd
+      content: |
+        [Unit]
+        Description=pig_unit
+
+
+        [Service]
+        Type=simple
+        User=student103
+        Group=it-camp-gitlab-users
+        ExecStart=/home/student103/pig
+        Restart=always
+        RestartSec=5
+
+
+        [Install]
+        WantedBy=multi-user.target
+      mode: '0744'
+  
+  - name: Reload user systemd daemon and start pig service
+    ansible.builtin.shell: |
+        systemctl --user daemon-reload
+        systemctl --user enable pig
+        systemctl --user start pig
+    args:
+        executable: /bin/bash
+
