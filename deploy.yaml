@@ -10,13 +10,13 @@
 
   - name: Create systemd user service directory
     ansible.builtin.file:
-      path: /home/student103/.config/systemd
+      path: /home/student103/.config/systemd/user
       state: directory
       mode: '0755'
 
   - name: Deploy pig_unit with systemd unit
     ansible.builtin.copy:
-      dest: /home/student103/.config/systemd/pig.service
+      dest: /home/student103/.config/systemd/user/pig.service
       content: |
         [Unit]
         Description=pig_unit
