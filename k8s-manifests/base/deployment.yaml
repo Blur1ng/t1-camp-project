@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: pig
-        image: $DOCKER_USERNAME/goapp2:$CI_COMMIT_SHA
+        image: $DOCKER_USERNAME/goapp2
         ports:
         - containerPort: 8000

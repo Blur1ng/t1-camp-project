@@ -46,7 +46,9 @@ build_docker:
 
 deploy_k8s:
   stage: deploy_k8s
-  image: bitnami/kubectl:latest
+  image: 
+    name: bitnami/kubectl:latest
+    entrypoint: [""]
   before_script:
     - echo $KUBECONFIG > ~/.kube/config
   script:
