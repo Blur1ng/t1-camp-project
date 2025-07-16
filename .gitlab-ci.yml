@@ -20,7 +20,7 @@ build_docker:
   services:
     - name: docker:dind
   script:
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
     - docker build -t goapp2 .
     - docker push $DOCKER_USERNAME/goapp2:$CI_COMMIT_SHA
 
