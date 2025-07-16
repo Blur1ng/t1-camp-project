@@ -50,7 +50,8 @@ deploy_k8s:
     name: bitnami/kubectl:latest
     entrypoint: [""]
   before_script:
-    - echo $KUBECONFIG > ~/.kube/config
+    - mkdir -p ~/.kube
+    - echo $KUBECONFIG | base64 -d > ~/.kube/config
   script:
     - kubectl apply -f deployment.yaml
     - kubectl apply -f service.yaml
