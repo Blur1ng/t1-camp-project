@@ -46,8 +46,8 @@ build_docker:
 
 deploy_k8s:
   stage: deploy_k8s
+  image: bitnami/kubectl:latest
   before_script:
-    - apt install -y kubectl
     - echo $KUBECONFIG > ~/.kube/config
   script:
     - kubectl apply -f deployment.yaml
