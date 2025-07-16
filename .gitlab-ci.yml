@@ -22,6 +22,7 @@ build_docker:
   script:
     - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
     - docker build -t goapp2 .
+    - docker tag goapp2 $DOCKER_USERNAME/goapp2
     - docker push $DOCKER_USERNAME/goapp2
 
 #unit_test:
