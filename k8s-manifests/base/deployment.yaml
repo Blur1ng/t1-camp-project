@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pig
+  namespace: eb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pig
+  template:
+    metadata:
+      labels:
+        app: pig
+    spec:
+      containers:
+      - name: pig
+        image: $DOCKER_USERNAME/goapp2:$CI_COMMIT_SHA
+        ports:
+        - containerPort: 8000

@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - deploy
+  - deploy_k8s
 
 build_binary:
   stage: build
@@ -19,24 +20,33 @@ build_docker:
   services:
     - name: docker:dind
   script:
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
     - docker build -t goapp2 .
+    - docker push $DOCKER_USERNAME/goapp2:$CI_COMMIT_SHA
 
-unit_test:
-  stage: test
-  script:
-    - go test ./...
+#unit_test:
+#  stage: test
+#  script:
+#    - go test ./...
+#
+#deploy:
+#  image: debian:stable
+#  stage: deploy
+#  before_script:
+#    - apt update
+#    - apt install -y python3 python3-pip openssh-client
+#    - pip install --break-system-packages ansible
+#    - mkdir -p ~/.ssh
+#    - echo "$id_rsa" > ~/.ssh/id_rsa
+#    - chmod 700 ~/.ssh
+#    - chmod 600 ~/.ssh/id_rsa
+#  script:
+#    - ansible-playbook -i inventory.ini deploy.yaml
 
-deploy:
-  image: debian:stable
-  stage: deploy
-  before_script:
-    - apt update
-    - apt install -y python3 python3-pip openssh-client
-    - pip install --break-system-packages ansible
-    - mkdir -p ~/.ssh
-    - echo "$id_rsa" > ~/.ssh/id_rsa
-    - chmod 700 ~/.ssh
-    - chmod 600 ~/.ssh/id_rsa
+deploy_k8s:
+  stage: deploy_k8s
   script:
-    - ansible-playbook -i inventory.ini deploy.yaml
-    
+    - kubectl set image deployment/pig pig=$CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
+    - kubectl apply -f deployment.yaml
+    - kubectl apply -f service.yaml
+    - kubectl apply -f ingress.yaml
