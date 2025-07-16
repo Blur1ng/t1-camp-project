@@ -51,9 +51,9 @@ deploy_k8s:
     entrypoint: [""]
   before_script:
     - mkdir -p ~/.kube
-    - echo "$KUBECONFIG" > ~/.kube/config
+    - echo $KUBECONFIG > ~/.kube/config
 
   script:
-    - kubectl apply -f deployment.yaml
-    - kubectl apply -f service.yaml
-    - kubectl apply -f ingress.yaml
+    - kubectl apply -f k8s-manifests/base/deployment.yaml
+    - kubectl apply -f k8s-manifests/base/service.yaml
+    - kubectl apply -f k8s-manifests/base/ingress.yaml
