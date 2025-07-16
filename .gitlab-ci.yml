@@ -46,8 +46,10 @@ build_docker:
 
 deploy_k8s:
   stage: deploy_k8s
+  before_script:
+    - sudo apt install -y kubectl
+    - echo $KUBECONFIG > ~/.kube/config
   script:
-    - kubectl set image deployment/pig pig=$CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_NAME
     - kubectl apply -f deployment.yaml
     - kubectl apply -f service.yaml
     - kubectl apply -f ingress.yaml
