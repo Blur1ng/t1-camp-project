@@ -10,4 +10,5 @@ rabbitmq:
       memory: "1Gi"
       cpu: "1"
   persistence:
+    storageClassName: local-path
     storage: 500Mi

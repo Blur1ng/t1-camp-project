@@ -13,4 +13,5 @@ spec:
       cpu: {{ .Values.rabbitmq.resources.limits.cpu }}
       memory: {{ .Values.rabbitmq.resources.limits.memory }}
   persistence:
+    storageClassName: {{ .Values.rabbitmq.persistence.storageClassName }}
     storage: {{ .Values.rabbitmq.persistence.storage }}
