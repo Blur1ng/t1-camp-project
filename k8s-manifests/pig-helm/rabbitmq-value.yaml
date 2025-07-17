@@ -10,5 +10,4 @@ rabbitmq:
       memory: "1Gi"
       cpu: "1"
   persistence:
-    storageClassName: eb
     storage: 500Mi
