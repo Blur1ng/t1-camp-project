@@ -54,6 +54,8 @@ deploy_k8s:
     - echo $KUBECONFIG > ~/.kube/config
 
   script:
+    - ls -l
+    - ls -l k8s-manifests/base/
     - kubectl apply -f k8s-manifests/base/deployment.yaml
     - kubectl apply -f k8s-manifests/base/service.yaml
     - kubectl apply -f k8s-manifests/base/ingress.yaml
