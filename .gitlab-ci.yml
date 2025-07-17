@@ -52,14 +52,19 @@ deploy_k8s:
   before_script:
     - mkdir -p ~/.kube
     - echo $KUBECONFIG > ~/.kube/config
-
     - apt-get update && apt-get install -y curl
     - curl https://get.helm.sh/helm-v3.17.0-linux-amd64.tar.gz -o helm.tar.gz
     - tar -zxvf helm.tar.gz
     - mv linux-amd64/helm /usr/local/bin/helm
+
+#    - apt-get install -y kubectl
+#    - curl -LO "https://dl.k8s.io/release/v1.24.0/bin/linux/amd64/kubectl"
+#    - mv ./kubectl /usr/local/bin/kubectl
+
   script:
-#   - kubectl apply -f k8s-manifests/base/configmap.yaml
-#   - kubectl apply -f k8s-manifests/base/deployment.yaml
-#   - kubectl apply -f k8s-manifests/base/service.yaml
-#   - kubectl apply -f k8s-manifests/base/ingress.yaml
-    - helm install pig-helm ./k8s-manifests/pig-helm
+#    - kubectl apply -f k8s-manifests/base/configmap.yaml
+#    - kubectl apply -f k8s-manifests/base/deployment.yaml
+#    - kubectl apply -f k8s-manifests/base/service.yaml
+#    - kubectl apply -f k8s-manifests/base/ingress.yaml
+    
+    - helm upgrade --install pig-helm ./k8s-manifests/pig-helm -f ./k8s-manifests/pig-helm/values.yaml -f ./k8s-manifests/pig-helm/rabbitmq-value.yaml

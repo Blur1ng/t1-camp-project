@@ -1,0 +1,14 @@
+rabbitmq:
+  enabled: true
+  namespace: eb
+  replicas: 1
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  persistence:
+    storageClassName: eb
+    storage: 500Mi

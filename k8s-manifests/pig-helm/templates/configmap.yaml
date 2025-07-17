@@ -5,4 +5,4 @@ metadata:
   namespace: eb
 data:
   pig_port: "8000"
-  rabbitmq_adress: amqp://rabbitmq-cluster.eb.cluster.local
+  rabbitmq_adress: "amqp://rabbitmq-cluster.eb.cluster.local"

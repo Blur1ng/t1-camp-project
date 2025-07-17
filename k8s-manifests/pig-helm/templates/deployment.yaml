@@ -59,6 +59,17 @@ spec:
           {{- with .Values.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
+          env:
+            - name: pig_port
+            valueFrom:
+              configMapKeyRef:
+                name: pig-config
+                key: pig_port
+            - name: rabbitmq_adress
+            valueFrom:
+              configMapKeyRef:
+                name: pig-config
+                key: rabbitmq_adress 
           {{- end }}
       {{- with .Values.volumes }}
       volumes:
