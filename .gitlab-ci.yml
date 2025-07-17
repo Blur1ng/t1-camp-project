@@ -62,4 +62,4 @@ deploy_k8s:
 #   - kubectl apply -f k8s-manifests/base/deployment.yaml
 #   - kubectl apply -f k8s-manifests/base/service.yaml
 #   - kubectl apply -f k8s-manifests/base/ingress.yaml
-    - helm create pig-helm 
+    - helm install pig-helm . -f values.yaml
