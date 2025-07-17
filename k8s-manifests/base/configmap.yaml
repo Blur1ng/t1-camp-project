@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pig-config
+  namespace: eb
+data:
+  pig_port: "8000"
