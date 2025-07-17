@@ -47,12 +47,13 @@ build_docker:
 deploy_k8s:
   stage: deploy_k8s
   image: 
-    name: bitnami/kubectl:latest
+    name: debian:bullseye-slim
     entrypoint: [""]
   before_script:
     - mkdir -p ~/.kube
     - echo $KUBECONFIG > ~/.kube/config
-    - apk update && apk add --no-cache curl
+    
+    - apt-get update && apt-get install -y curl
     - curl https://get.helm.sh/helm-v3.17.0-linux-amd64.tar.gz -o helm.tar.gz
     - tar -zxvf helm.tar.gz
     - mv linux-amd64/helm /usr/local/bin/helm
