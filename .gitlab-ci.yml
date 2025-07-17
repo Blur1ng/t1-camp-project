@@ -52,7 +52,7 @@ deploy_k8s:
   before_script:
     - mkdir -p ~/.kube
     - echo $KUBECONFIG > ~/.kube/config
-    
+
     - apt-get update && apt-get install -y curl
     - curl https://get.helm.sh/helm-v3.17.0-linux-amd64.tar.gz -o helm.tar.gz
     - tar -zxvf helm.tar.gz
@@ -62,4 +62,4 @@ deploy_k8s:
 #   - kubectl apply -f k8s-manifests/base/deployment.yaml
 #   - kubectl apply -f k8s-manifests/base/service.yaml
 #   - kubectl apply -f k8s-manifests/base/ingress.yaml
-    - helm create pig-helm . -f values.yaml
+    - helm create pig-helm . -p k8s-manifests/pig-helm/values.yaml
