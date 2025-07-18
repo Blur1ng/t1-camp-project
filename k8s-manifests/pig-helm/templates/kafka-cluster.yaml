@@ -8,11 +8,11 @@ spec:
     replicas: {{ .Values.kafka.replicas }}
     listeners:
       - name: plain
-        port: 9092
+        port: 8092
         type: internal
         tls: false
       - name: tls
-        port: 9093
+        port: 8093
         type: internal
         tls: true
     config:

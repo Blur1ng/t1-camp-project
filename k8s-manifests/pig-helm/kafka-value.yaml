@@ -1,4 +1,6 @@
-
+strimzi:
+  operatorNamespace: kafka-operator
+  
 kafka:
   name: kafka-cluster
   namespace: eb             
