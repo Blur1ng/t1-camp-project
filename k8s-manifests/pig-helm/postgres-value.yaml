@@ -1,0 +1,18 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: pig-db
+  namespace: eb
+spec:
+  teamId: "pig"
+  volume:
+    size: 1Gi
+  numberOfInstances: 1
+  users:
+    piguser:
+      - superuser
+      - createdb
+  databases:
+    pigdb: piguser
+  postgresql:
+    version: "15"
