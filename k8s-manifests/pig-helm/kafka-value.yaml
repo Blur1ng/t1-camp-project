@@ -1,3 +1,4 @@
+clusterName: kafka-cluster
 kafka:
   replicas: 1
   storage:
