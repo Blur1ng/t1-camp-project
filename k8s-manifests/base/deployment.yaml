@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pig
-        image: $DOCKER_USERNAME/goapp2
+        image: blur1ng/goapp2
         ports:
         - containerPort: 8000
         env:

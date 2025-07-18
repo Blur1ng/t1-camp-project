@@ -1,0 +1,16 @@
+
+kafka:
+  name: kafka-cluster
+  namespace: eb             
+  replicas: 1         
+  storage:
+    type: persistent-claim 
+    size: 1Gi              
+    class: local-path      
+
+zookeeper:
+  replicas: 1
+  storage:
+    type: persistent-claim
+    size: 1Gi
+    class: local-path

@@ -1,0 +1,28 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: Kafka
+metadata:
+  name: {{ .Values.kafka.name }}
+  namespace: {{ .Values.kafka.namespace }}
+spec:
+  kafka:
+    replicas: {{ .Values.kafka.replicas }}
+    listeners:
+      plain: {}
+      tls: {}
+    config:
+      offsets.topic.replication.factor: {{ .Values.kafka.replicas }}
+      transaction.state.log.replication.factor: {{ .Values.kafka.replicas }}
+      transaction.state.log.min.isr: 1
+    storage:
+      type: {{ .Values.kafka.storage.type }}
+      size: {{ .Values.kafka.storage.size }}
+      class: {{ .Values.kafka.storage.class }}
+  zookeeper:
+    replicas: {{ .Values.zookeeper.replicas }}
+    storage:
+      type: {{ .Values.zookeeper.storage.type }}
+      size: {{ .Values.zookeeper.storage.size }}
+      class: {{ .Values.zookeeper.storage.class }}
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}
