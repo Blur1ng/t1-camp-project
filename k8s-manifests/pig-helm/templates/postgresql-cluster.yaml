@@ -1,0 +1,20 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: {{ .Values.postgresql.clusterName }}
+  namespace: {{ .Values.postgresql.namespace }}
+spec:
+  teamId: "{{ .Values.postgresql.teamId }}"
+  volume:
+    size: "{{ .Values.postgresql.volume.size }}"
+    storageClass: "{{ .Values.postgresql.volume.storageClassName }}"
+  numberOfInstances: {{ .Values.postgresql.instances }}
+  users:
+    {{ .Values.postgresql.dbUser }}:
+      - superuser
+      - createdb
+  databases:
+    {{ .Values.postgresql.dbName }}: {{ .Values.postgresql.dbUser }}
+  postgresql:
+    version: "{{ .Values.postgresql.pgVersion }}"
+

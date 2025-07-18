@@ -1,18 +1,12 @@
-apiVersion: "acid.zalan.do/v1"
-kind: postgresql
-metadata:
-  name: pig-db
+postgresql:
+  enabled: true
   namespace: eb
-spec:
-  teamId: "pig"
+  clusterName: pig-db
+  teamId: pig
+  instances: 1
+  pgVersion: "15"
+  dbUser: piguser
+  dbName: pigdb
   volume:
     size: 1Gi
-  numberOfInstances: 1
-  users:
-    piguser:
-      - superuser
-      - createdb
-  databases:
-    pigdb: piguser
-  postgresql:
-    version: "15"
+    storageClassName: local-path
