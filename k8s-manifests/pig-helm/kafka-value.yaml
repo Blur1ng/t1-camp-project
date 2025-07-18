@@ -1,12 +1,11 @@
 clusterName: kafka-cluster
 kafka:
-  replicas: 3
+  replicas: 1
   storage:
     type: persistent-claim
-    size: 10Gi
+    size: 1Gi
 zookeeper:
-  replicas: 3
+  replicas: 1
   storage:
     type: persistent-claim
-    size: 5Gi
-resources: {}
+    size: 1Gi

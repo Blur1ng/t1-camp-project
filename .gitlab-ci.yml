@@ -67,5 +67,7 @@ deploy_k8s:
 #    - kubectl apply -f k8s-manifests/base/deployment.yaml
 #    - kubectl apply -f k8s-manifests/base/service.yaml
 #    - kubectl apply -f k8s-manifests/base/ingress.yaml
+    - helm repo add strimzi https://strimzi.io/charts/:contentReference[oaicite:0]{index=0}  
+    - helm repo update:contentReference[oaicite:1]{index=1}
     - helm upgrade --install pig-helm ./k8s-manifests/pig-helm -f ./k8s-manifests/pig-helm/values.yaml -f ./k8s-manifests/pig-helm/rabbitmq-value.yaml -f ./k8s-manifests/pig-helm/kafka-value.yaml
 
