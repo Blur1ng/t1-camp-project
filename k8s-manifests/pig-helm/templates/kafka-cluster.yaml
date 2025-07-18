@@ -6,6 +6,15 @@ metadata:
 spec:
   kafka:
     replicas: {{ .Values.kafka.replicas }}
+    listeners:
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: tls
+        port: 9093
+        type: internal
+        tls: true
     config:
       offsets.topic.replication.factor: {{ .Values.kafka.replicas }}
       transaction.state.log.replication.factor: {{ .Values.kafka.replicas }}
