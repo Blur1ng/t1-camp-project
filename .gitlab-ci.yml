@@ -1,4 +1,4 @@
-image: it-camp.innoca.local:5050/student103/project-1/golang:latest
+image: it-camp.innoca.local:5005/student103/project-1/golang:latest
 
 stages:
   - build
@@ -18,7 +18,7 @@ build_docker:
   image: docker:latest
   stage: build
   services:
-    - name: it-camp.innoca.local:5050/student103/project-1/docker-dind:latest
+    - name: it-camp.innoca.local:5005/student103/project-1/docker-dind:latest
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
