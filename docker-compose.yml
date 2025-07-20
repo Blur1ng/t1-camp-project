@@ -4,4 +4,4 @@ services:
   goapp2:
     build: .
     ports:
-      - "8000:8000"
+      - "8089:8089"

@@ -60,7 +60,7 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	viper.SetDefault("Port", "8078")
+	viper.SetDefault("Port", "8089")
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a config file is found, read it in.
