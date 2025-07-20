@@ -10,3 +10,4 @@ postgresql:
   volume:
     size: 1Gi
     storageClassName: local-path
+
