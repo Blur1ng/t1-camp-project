@@ -4,5 +4,5 @@ metadata:
   name: pig-config
   namespace: eb
 data:
-  pig_port: "8000"
+  pig_port: "8078"
   rabbitmq_adress: "amqp://rabbitmq-cluster.eb.cluster.local"
