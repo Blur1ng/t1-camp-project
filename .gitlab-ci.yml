@@ -19,9 +19,6 @@ build_docker:
   stage: build
   services:
     - name: it-camp.innoca.local:5005/student103/project-1/docker-dind:latest
-  variables:
-    DOCKER_DRIVER: overlay2
-    DOCKER_TLS_CERTDIR: ""
   before_script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   script:
