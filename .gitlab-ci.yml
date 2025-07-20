@@ -1,4 +1,4 @@
-image: golang:1.23.7-bookworm
+image: it-camp.innoca.local:5050/student103/project-1/golang:latest
 
 stages:
   - build
