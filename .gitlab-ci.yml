@@ -1,4 +1,4 @@
-image: it-camp.innoca.local:5005/student103/project-1/golang:latest
+image: it-camp.innoca.local:5005/student103/project-1/golang-build:latest
 
 stages:
   - build
@@ -9,11 +9,11 @@ stages:
 build_binary:
   stage: build
   script:
-    - go build
+    - go build -o pig .
   artifacts:
     paths:
       - pig
-
+      
 build_docker:
   image: docker:latest
   stage: build
