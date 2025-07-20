@@ -13,7 +13,7 @@ build_binary:
   artifacts:
     paths:
       - pig
-      
+
 build_docker:
   image: docker:latest
   stage: build
@@ -21,11 +21,10 @@ build_docker:
     - name: it-camp.innoca.local:5005/student103/project-1/docker-dind:latest
       alias: docker
       entrypoint: ["dockerd-entrypoint.sh"]
-  before_script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   script:
-    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - echo $CI_JOB_TOKEN | docker login -u gitlab-ci-token --password-stdin $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker info
     - docker push $CI_REGISTRY_IMAGE:latest
 
 
