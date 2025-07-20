@@ -9,7 +9,7 @@ stages:
 build_binary:
   stage: build
   script:
-    - go build
+    - go build -o pig .
   artifacts:
     paths:
       - pig
