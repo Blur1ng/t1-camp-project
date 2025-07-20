@@ -24,6 +24,7 @@ build_docker:
     - docker build -t goapp2 .
     - docker tag goapp2 $DOCKER_USERNAME/goapp2
     - docker push $DOCKER_USERNAME/goapp2
+    
 
 #unit_test:
 #  stage: test
