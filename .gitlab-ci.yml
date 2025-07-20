@@ -18,8 +18,7 @@ build_docker:
   image: docker:latest
   stage: build
   services:
-    - name: docker:dind
-      entrypoint: ["dockerd-entrypoint.sh"]
+    - name: it-camp.innoca.local:5050/student103/project-1/docker-dind:latest
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_TLS_CERTDIR: ""
