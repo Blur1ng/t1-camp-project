@@ -18,13 +18,18 @@ build_docker:
   image: docker:latest
   stage: build
   services:
-    - docker:dind
+    - name: docker:dind
+      entrypoint: ["dockerd-entrypoint.sh"]
   variables:
     DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: ""
+  before_script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
     - docker build -t $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:latest
+
 
 
 
