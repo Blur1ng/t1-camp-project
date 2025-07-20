@@ -15,16 +15,18 @@ build_binary:
       - pig
 
 build_docker:
-  image: docker
+  image: docker:latest
   stage: build
   services:
-    - name: docker:dind
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: overlay2
   script:
-    - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-    - docker build -t goapp2 .
-    - docker tag goapp2 $DOCKER_USERNAME/goapp2
-    - docker push $DOCKER_USERNAME/goapp2
-    
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+
 
 #unit_test:
 #  stage: test
