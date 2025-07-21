@@ -27,7 +27,8 @@ build_docker:
 
     - echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
     - docker tag $CI_REGISTRY_IMAGE blur1ng/docker-dind:latest
-    - docker push $DOCKER_USERNAME/docker-dind:latest
+#    - docker push $DOCKER_USERNAME/docker-dind:latest
+
 
 #unit_test:
 #  stage: test
