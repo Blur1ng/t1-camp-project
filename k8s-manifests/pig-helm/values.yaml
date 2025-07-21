@@ -56,7 +56,7 @@ service:
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 8089
   targetPort: 8089
-  nodePort: 30089
+  nodePort: 8089
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
@@ -92,11 +92,13 @@ livenessProbe:
   httpGet:
     path: /internal/healthz
     port: http
-  periodSeconds: 5
+  initialDelaySeconds: 5
+  periodSeconds: 1
 readinessProbe:
   httpGet:
     path: /internal/healthz
     port: http
+  initialDelaySeconds: 3
   periodSeconds: 5
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
