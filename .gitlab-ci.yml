@@ -28,7 +28,6 @@ build_docker:
 #    - docker push $DOCKER_USERNAME/docker-dind:latest
 
 
-
 #unit_test:
 #  stage: test
 #  script:
