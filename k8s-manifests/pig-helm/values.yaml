@@ -130,7 +130,7 @@ affinity: {}
 
 rabbitmq:
   name: rabbitmq-cluster
-  rabbitmq_adress: "amqp://rabbitmq-cluster.eb.cluster.local"
+  rabbitmq_adress: amqp://rabbitmq-cluster.eb.cluster.local
   enabled: true
   replicas: 3
   resources:
