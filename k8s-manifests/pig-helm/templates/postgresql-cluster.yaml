@@ -1,8 +1,8 @@
 apiVersion: "acid.zalan.do/v1"
 kind: postgresql
 metadata:
-  name: {{ .Values.postgresql.clusterName }}
-  namespace: {{ .Values.postgresql.namespace }}
+  name: {{ .Values.postgresql.name }}
+  namespace: {{ .Release.Namespace }}
 spec:
   teamId: "{{ .Values.postgresql.teamId }}"
   volume:

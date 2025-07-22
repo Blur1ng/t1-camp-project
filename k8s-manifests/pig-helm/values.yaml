@@ -127,3 +127,47 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+rabbitmq:
+  name: rabbitmq-cluster
+  rabbitmq_adress: "amqp://rabbitmq-cluster.eb.cluster.local"
+  enabled: true
+  replicas: 3
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  persistence:
+    storageClassName: local-path
+    storage: 500Mi
+
+postgresql:
+  enabled: true
+  name: pig-db
+  teamId: pig
+  instances: 1
+  pgVersion: "15"
+  dbUser: piguser
+  dbName: pigdb
+  volume:
+    size: 1Gi
+    storageClassName: local-path
+
+kafka:
+  name: kafka-cluster
+  version: 3.7.0
+  replicas: 3
+  listeners:
+    plain: 9092
+    tls: 9093
+  storage:
+    type: persistent-claim
+    size: 1Gi
+zookeeper:
+  replicas: 1
+  storage:
+    type: persistent-claim
+    size: 1Gi

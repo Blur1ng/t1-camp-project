@@ -1,19 +1,19 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: {{ .Values.clusterName }}
-  namespace: eb
+  name: {{ .Values.kafka.name }}
+  namespace: {{ .Release.Namespace }}
 spec:
   kafka:
-    version: 3.7.0
+    version: {{ .Values.kafka.version }}
     replicas: {{ .Values.kafka.replicas }}
     listeners:
       - name: plain
-        port: 9092
+        port: {{ .Values.kafka.listeners.plain }}
         type: internal
         tls: false
       - name: tls
-        port: 9093
+        port: {{ .Values.kafka.listeners.tls }}
         type: internal
         tls: true
     config:
