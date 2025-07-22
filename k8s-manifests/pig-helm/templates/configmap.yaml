@@ -5,4 +5,5 @@ metadata:
   namespace: {{ .Release.Namespace }}
 data:
   pig_port: {{ .Values.service.port }}
-  rabbitmq_adress: "{{ .Values.rabbitmq.rabbitmq_adress }}"
+  rabbitmq_adress: "amqp://rabbitmq-cluster.eb.cluster.local"
+  
